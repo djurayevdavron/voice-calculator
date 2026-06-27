@@ -284,6 +284,7 @@ if (SpeechRecognition) {
             .replace(/divide/g, "/");
         //// natija display ga yozildi
         display.value = speech;
+        setTimeout(calculate, 1000);
         //// hisoblash amalga oshirildi
         calculate();
     };
