@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <ul style="color: #5052b1;" class="voice-info">
+        <li>voice funksiyasi faqat ingliz tilida ishlaydi</li>
+        <li>faqat + - * / amallar hamda sonlar qo'llab quvvatlanadi</li>
+        <li>+ - plus</li>
+        <li>- - minus</li>
+        <li>* - times yoki multiply</li>
+        <li>/ - divide</li>
+        <li>foydalanishdan avval qurilmada mikrofon ishlashini tekshirish tavsiya etiladi</li>
+    </ul>
+    <div class="calculator">
+        <div class="top-bar">
+            <button id="voiceBtn">🎤</button> 
+            <button id="toggleMode">🌙</button>
+        </div>
+
+        <div class="display">
+            <input type="text" placeholder="0">
+        </div>
+        <!-- Buttons qismi-->
+        <div class="buttons">
+            <!-- 1-qator va 2-qator qismi -->
+             <button class="btn operator">√</button>
+            <button class="btn operator">π</button>
+            <button class="btn operator">^</button>
+            <button class="btn operator">!</button>
+            <button class="btn operator">AC</button>
+            <button class="btn operator">()</button>
+            <button class="btn operator">%</button>
+            <button class="btn operator">÷</button>
+            <!-- 3-qator qismi -->
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn operator">×</button>
+            <!-- 4-qator  qismi-->
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn operator">−</button>
+            <!-- 5-qator qismi -->
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn operator">+</button>
+            <!-- 6-qator qismi -->
+            <button class="btn">0</button>
+            <button class="btn">,</button>
+            <button class="btn">⌫</button>
+            <button class="btn equals">=</button>
+        </div>
+    </div>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
