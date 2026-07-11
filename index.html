@@ -1,65 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calc</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <ul style="color: #5052b1;" class="voice-info">
-        <li>voice funksiyasi faqat ingliz tilida ishlaydi</li>
-        <li>faqat + - * / amallar hamda sonlar qo'llab quvvatlanadi</li>
-        <li>+ - plus</li>
-        <li>- - minus</li>
-        <li>* - times yoki multiply</li>
-        <li>/ - divide</li>
-        <li>foydalanishdan avval qurilmada mikrofon ishlashini tekshirish tavsiya etiladi</li>
-    </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalcX</title>
+    <!-- FontAwesome ulandi -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="calculator">
-        <div class="top-bar">
-            <button id="voiceBtn">🎤</button> 
-            <button id="toggleMode">🌙</button>
-        </div>
+      <!-- Yuqori panel: Ikonkalar bilan -->
+      <div class="top-bar">
+        <button id="infoBtn" title="Yo'riqnoma">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+        <button id="voiceBtn" title="Ovozli boshqaruv">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button id="toggleMode" title="Tema o'zgartirish">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
 
-        <div class="display">
-            <input type="text" placeholder="0">
-        </div>
-        <!-- Buttons qismi-->
-        <div class="buttons">
-            <!-- 1-qator va 2-qator qismi -->
-             <button class="btn operator">√</button>
-            <button class="btn operator">π</button>
-            <button class="btn operator">^</button>
-            <button class="btn operator">!</button>
-            <button class="btn operator">AC</button>
-            <button class="btn operator">()</button>
-            <button class="btn operator">%</button>
-            <button class="btn operator">÷</button>
-            <!-- 3-qator qismi -->
-            <button class="btn">7</button>
-            <button class="btn">8</button>
-            <button class="btn">9</button>
-            <button class="btn operator">×</button>
-            <!-- 4-qator  qismi-->
-            <button class="btn">4</button>
-            <button class="btn">5</button>
-            <button class="btn">6</button>
-            <button class="btn operator">−</button>
-            <!-- 5-qator qismi -->
-            <button class="btn">1</button>
-            <button class="btn">2</button>
-            <button class="btn">3</button>
-            <button class="btn operator">+</button>
-            <!-- 6-qator qismi -->
-            <button class="btn">0</button>
-            <button class="btn">,</button>
-            <button class="btn">⌫</button>
-            <button class="btn equals">=</button>
-        </div>
+      <div class="display">
+        <input type="text" placeholder="0" readonly />
+      </div>
+
+      <div class="buttons">
+        <button class="btn operator">√</button>
+        <button class="btn operator">π</button>
+        <button class="btn operator">^</button>
+        <button class="btn operator">!</button>
+        <button class="btn operator">AC</button>
+        <button class="btn operator">()</button>
+        <button class="btn operator">%</button>
+        <button class="btn operator">÷</button>
+        <button class="btn">7</button>
+        <button class="btn">8</button>
+        <button class="btn">9</button>
+        <button class="btn operator">×</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+        <button class="btn operator">−</button>
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn operator">+</button>
+        <button class="btn">0</button>
+        <button class="btn">,</button>
+        <button class="btn">⌫</button>
+        <button class="btn equals">=</button>
+      </div>
     </div>
-    
-    
+
+    <!-- Mukammal Instruksiya Modal -->
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn"><i class="fa-solid fa-xmark"></i></span>
+        <h3>
+          <i class="fa-solid fa-headset"></i> Ovozli Boshqaruv Qo'llanmasi
+        </h3>
+
+        <div class="info-scroll-area">
+          <!-- Asosiy qoida -->
+          <p class="warning-text">
+            <i class="fa-solid fa-circle-info"></i> Mikrofon
+            <b>faqat Ingliz tilida</b> ishlaydi va har bir matematik ifoda
+            oxirida natijani olish uchun <b>"Equals"</b> deb aytishingiz shart.
+          </p>
+
+          <!-- Boshqaruv -->
+          <div class="info-section">
+            <h4><i class="fa-solid fa-sliders"></i> Boshqaruv Buyruqlari</h4>
+            <ul>
+              <li>
+                <b>Boshlash:</b> Mikrofon tugmasini bosing (Manual start).
+              </li>
+              <li>
+                <b>To'xtatish:</b> Ovoz orqali <span>"Stop"</span> deb ayting.
+              </li>
+              <li>
+                <b>Tozalash:</b> <span>"Clear"</span> buyrug'i ekranni to'liq
+                tozalaydi.
+              </li>
+              <li>
+                <b>O'chirish:</b> <span>"Delete"</span> buyrug'i oxirgi raqamni
+                o'chiradi.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Matematik amallar -->
+          <div class="info-section">
+            <h4>
+              <i class="fa-solid fa-calculator"></i> Matematik Amallar
+              (Misollar)
+            </h4>
+            <ul>
+              <li><b>Qo'shish:</b> "Five <b>plus</b> three <b>equals</b>"</li>
+              <li><b>Ayirish:</b> "Ten <b>minus</b> two <b>equals</b>"</li>
+              <li><b>Ko'paytirish:</b> "Two <b>times</b> six <b>equals</b>"</li>
+              <li><b>Bo'lish:</b> "Eight <b>divide</b> four <b>equals</b>"</li>
+              <li><b>Daraja:</b> "Five <b>squared</b>" (5²)</li>
+              <li><b>Ildiz:</b> "<b>Square root</b> sixteen" (√16)</li>
+              <li><b>Foiz:</b> "Fifty <b>percent</b>" (50%)</li>
+            </ul>
+          </div>
+
+          <!-- Raqamlar -->
+          <div class="info-section">
+            <h4><i class="fa-solid fa-list-ol"></i> Raqamlar talaffuzi</h4>
+            <p>Tizim raqamlarni istalgan ko'rinishda tushunadi:</p>
+            <ul class="number-grid">
+              <li>0: <b>Zero, Oh, Null</b></li>
+              <li>1: <b>One, Won</b></li>
+              <li>2: <b>Two, Too, To</b></li>
+              <li>4: <b>Four, For</b></li>
+              <li>8: <b>Eight, Ate</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
