@@ -1,134 +1,399 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-/* body markazga joylashtirildi */
 body {
-    background: #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  gap: 30px;
+  flex-wrap: wrap;
 }
-/* kalkulyator konteyneri yaratildi */
+
+/* --- Layout & Core UI --- */
 .calculator {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 20px;
-    width: 300px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
-/* yuqori panel joylashtirildi */
+
 .top-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
-/* dark mode tugmasi sozlandi */
-#toggleMode {
-    border: none;
-    background: #ddd;
-    border-radius: 50%;
-    padding: 8px 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-/* display qismi sozlandi */
+
 .display input {
-    width: 100%;
-    height: 60px;
-    border: none;
-    outline: none;
-    font-size: 24px;
-    text-align: right;
-    padding: 10px;
-    border-radius: 12px;
-    background: #F0F0F0;
-    margin-bottom: 15px;
+  width: 100%;
+  height: 60px;
+  border: none;
+  outline: none;
+  font-size: 28px;
+  text-align: right;
+  padding: 10px;
+  border-radius: 12px;
+  background: #f0f0f0;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-weight: 600;
+  caret-color: transparent;
 }
-/* tugmalar grid ko'rinishida joylashtirildi */
+
+/* --- Buttons --- */
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
-/* umumiy tugmalar dizayni berildi */
+
 .btn {
-    height: 60px;
-    border: none;
-    border-radius: 15px;
-    font-size: 18px;
-    cursor: pointer;
-    background: #D3D6DB;
-    color: #2C2C2C;
-    transition: 0.2s;
+  height: 60px;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  background: #d3d6db;
+  color: #2c2c2c;
+  transition: 0.2s;
 }
-/* tugma ustiga kelganda effekt berildi */
-.btn:hover {
-    transform: scale(1.05);
-}
-/* operator tugmalar ajratildi */
+
 .operator {
-    background: #A9C7DB;
+  background: #a9c7db;
 }
-/* teng tugmasi alohida ajratildi */
+
 .equals {
-    background: #1E7A3A;
-    color: white;
-}
-/* teng tugmasiga hover effekti berildi */
-.equals:hover {
-    background: #16632E;
+  background: #1e7a3a;
+  color: white;
 }
 
-/* dark mode umumiy fon o'zgartirildi */
+@media (hover: hover) {
+  .btn:hover {
+    transform: scale(1.05);
+  }
+  .equals:hover {
+    background: #16632e;
+  }
+  #voiceBtn:hover,
+  #toggleMode:hover,
+  #infoBtn:hover {
+    opacity: 0.8;
+  }
+}
+
+/*  Dark Mode  */
 body.dark {
-    background: #121212;
+  background: #121212;
 }
-
-/* dark mode kalkulyator dizayni o'zgartirildi */
 body.dark .calculator {
-    background: #1E1E1E;
+  background: #1e1e1e;
 }
-
-/* dark mode display o'zgartirildi */
 body.dark .display input {
-    background: #2A2A2A;
-    color: white;
+  background: #2a2a2a;
+  color: white;
 }
-
-/* dark mode tugmalar o'zgartirildi */
 body.dark .btn {
-    background: #333;
-    color: white;
+  background: #333;
+  color: white;
 }
-
-/* dark mode operator ranglari o'zgartirildi */
 body.dark .operator {
-    background: #2F5B7C;
+  background: #2f5b7c;
 }
-
-/* dark mode teng tugmasi o'zgartirildi */
 body.dark .equals {
-    background: #0F5D2F;
+  background: #0f5d2f;
 }
-
-/* dark mode toggle tugmasi o'zgartirildi */
 body.dark #toggleMode {
-    background: #333;
-    color: white;
+  background: #333;
+  color: white;
 }
 
-/* voice tugmasi dizayni berildi */
+/*  Top Bar Icons  */
 #voiceBtn {
-    border: none;
-    background: lightblue;
-    color: white;
-    border-radius: 50%;
-    padding: 8px 10px;
-    cursor: pointer;
-    margin-right: 5px;
+  border: none;
+  background: lightblue;
+  color: white;
+  border-radius: 50%;
+  padding: 8px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: 0.25s;
+}
+
+#infoBtn {
+  border: none;
+  background: #e0e0e0;
+  color: #333;
+  border-radius: 50%;
+  padding: 8px 10px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#toggleMode {
+  border: none;
+  background: #ddd;
+  border-radius: 50%;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/*  Modal Info Box  */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-btn {
+  color: #888;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: #e74c3c;
+}
+.modal-content h3 {
+  margin-bottom: 15px;
+  color: #5052b1;
+  font-size: 20px;
+}
+.voice-info-list {
+  padding-left: 20px;
+  color: #333;
+  font-size: 15px;
+}
+.voice-info-list li {
+  margin-bottom: 10px;
+}
+
+/* Dark Mode Modal */
+body.dark .modal-content {
+  background-color: #1e1e1e;
+}
+body.dark .modal-content h3 {
+  color: #a9c7db;
+}
+body.dark .voice-info-list {
+  color: #ccc;
+}
+body.dark #infoBtn {
+  background: #333;
+  color: #fff;
+}
+
+/*  Responsive  */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  .btn {
+    height: 55px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .calculator {
+    padding: 15px;
+  }
+  .display input {
+    font-size: 22px;
+    height: 55px;
+  }
+  .btn {
+    height: 50px;
+    font-size: 15px;
+  }
+}
+/* Yuqori panel tugmalari ikonka bilan */
+.top-bar button {
+  border: none;
+  background: #e0e0e0;
+  color: #333;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.top-bar button:hover {
+  background: #ccc;
+}
+#voiceBtn {
+  background: lightblue;
+}
+
+/* Modal Dizayni */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+.modal-content {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.info-scroll-area {
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.warning-text {
+  background: #fff3cd;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+.info-section h4 {
+  margin-top: 15px;
+  color: #5052b1;
+}
+.info-section li {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #555;
+}
+.info-section span {
+  background: #e0e7ff;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Dark Mode Modal */
+body.dark .modal-content {
+  background: #1e1e1e;
+}
+body.dark .info-section h4 {
+  color: #a9c7db;
+}
+body.dark .info-section li {
+  color: #ccc;
+}
+body.dark .warning-text {
+  background: #332b00;
+  color: #ffcc00;
+}
+body.dark .top-bar button {
+  background: #333;
+  color: white;
+}
+.number-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+.info-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #5052b1;
+}
+body.dark .info-section h4 {
+  color: #a9c7db;
+}
+
+body.dark .modal-content {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+body.dark .warning-text {
+  background-color: #3d3408;
+  color: #ffde59;
+}
+
+body.dark .info-section h4 {
+  color: #81a1c1;
+}
+
+body.dark .info-section span {
+  background-color: #3b4252;
+  color: #88c0d0;
+  border: 1px solid #4c566a;
+}
+
+body.dark .close-btn {
+  color: #ffffff;
+}
+body.dark b {
+  color: #ffffff;
 }
