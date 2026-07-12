@@ -186,16 +186,16 @@ document.addEventListener("keydown", (e) => {
 const toggleBtn = document.getElementById("toggleMode");
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
-  toggleBtn.textContent = "☀️";
+  toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
 }
 
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   if (document.body.classList.contains("dark")) {
-    toggleBtn.textContent = "☀️";
+    toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
     localStorage.setItem("theme", "dark");
   } else {
-    toggleBtn.textContent = "🌙";
+    toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
     localStorage.setItem("theme", "light");
   }
 });
@@ -215,6 +215,11 @@ function parseVoice(text) {
     [/\b(clear all|clear screen|clear|reset|erase all)\b/g, "C"],
     [/\b(backspace|undo|remove|delete)\b/g, "D"],
     [/\b(stop listening|halt)\b/g, "stop"],
+
+    // Tema buyruqlari
+    [/\b(dark mode|dark theme|enable dark|night mode)\b/g, "DARKMODE"],
+    [/\b(light mode|light theme|disable dark|day mode)\b/g, "LIGHTMODE"],
+    [/\b(toggle theme|switch theme|change theme)\b/g, "TOGGLEMODE"],
 
     // Tenglik amallari
     [/\b(equals|equal|is|gives|makes|results in|gives us)\b/g, "="],
@@ -333,6 +338,25 @@ if (SpeechRecognition) {
     if (parsedSpeech.includes("stop")) {
       manualStop = true;
       recognition.stop();
+      return;
+    }
+    // Theme buyruqlari
+    if (parsedSpeech.includes("DARKMODE")) {
+      document.body.classList.add("dark");
+      toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+      localStorage.setItem("theme", "dark");
+      return;
+    }
+
+    if (parsedSpeech.includes("LIGHTMODE")) {
+      document.body.classList.remove("dark");
+      toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+      localStorage.setItem("theme", "light");
+      return;
+    }
+
+    if (parsedSpeech.includes("TOGGLEMODE")) {
+      toggleBtn.click();
       return;
     }
 
