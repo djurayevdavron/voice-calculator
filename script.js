@@ -113,6 +113,11 @@ function handleInput(value) {
 
   if (display.value === "0" && "0123456789(√π".includes(value)) {
     display.value = value;
+  }
+  // Operator yoki qavsdan keyin yozilgan ortiqcha 0 ni almashtirish
+  if (/^[0-9]$/.test(value) && /(^|[+\-×÷*/^(])0$/.test(display.value)) {
+    display.value = display.value.slice(0, -1) + value;
+    return;
   } else {
     display.value += value;
   }
